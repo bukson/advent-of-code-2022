@@ -1,3 +1,5 @@
+module Common where
+
 import qualified Data.Text    as Text
 import qualified Data.Text.IO as Text
 
@@ -13,9 +15,3 @@ splitStrListAcc :: [String] -> [Int] -> [[Int]] -> [[Int]]
 splitStrListAcc ("":listTail) acc1 acc2 = splitStrListAcc listTail [] (acc1:acc2)
 splitStrListAcc (str:listTail) acc1 acc2 = splitStrListAcc listTail ((read str):acc1) acc2
 splitStrListAcc [] acc1 acc2 = (acc1:acc2)
-
--- main :: IO Int
-main = do
-    strList <- readInputFile
-    let sums = map sum (splitStrList strList)
-    return $ foldl (\acc i -> max acc i) 0 sums
