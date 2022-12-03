@@ -14,7 +14,7 @@ getFullScore (opponentPlayString:myPlayString:[]) =
     let opponentPlay = getOponnetPlay opponentPlayString in 
     let myPlay = getMyPlay myPlayString in
     let result = compare opponentPlay myPlay in
-    mapScore result + (mapPlay myPlay)
+    mapResult result + (getPlayScore myPlay)
 
 
 main :: IO Int

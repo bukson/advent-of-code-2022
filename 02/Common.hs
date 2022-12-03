@@ -5,6 +5,7 @@ import qualified Data.Text.IO as Text
 
 
 data Play = Rock | Paper | Scissors deriving Eq
+
 instance Ord Play where
     compare Rock Paper = LT
     compare Paper Scissors = LT
@@ -21,15 +22,15 @@ getOponnetPlay "A" = Rock
 getOponnetPlay "B" = Paper
 getOponnetPlay "C" = Scissors
 
-mapPlay :: Play -> Int
-mapPlay Rock = 1
-mapPlay Paper = 2
-mapPlay Scissors = 3
+getPlayScore :: Play -> Int
+getPlayScore Rock = 1
+getPlayScore Paper = 2
+getPlayScore Scissors = 3
 
-mapScore :: Ordering -> Int
-mapScore LT = 6
-mapScore EQ = 3
-mapScore GT = 0
+mapResult :: Ordering -> Int
+mapResult LT = 6
+mapResult EQ = 3
+mapResult GT = 0
 
 readInputFile :: IO [[String]]
 readInputFile = do
