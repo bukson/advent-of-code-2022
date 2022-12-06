@@ -8,16 +8,14 @@ readInputFile = do
     input_lines <- fmap Text.lines (Text.readFile "input.txt")
     return $ map Text.unpack input_lines
 
-splitStr :: String -> Char -> [String]
-splitStr s c =  splitStr' s c "" [] where
-    splitStr' :: String -> Char -> String -> [String] -> [String]
-    splitStr' [] _ acc result = reverse ((reverse acc):result)
-    splitStr' (cs:s) c acc result =  if cs == c 
-        then splitStr' s c "" ((reverse acc):result)
-        else splitStr' s c (cs:acc) result  
-
 splitBy :: Char -> String -> [String]
 splitBy c s = case dropWhile (== c) s of
   "" -> []
   s' -> w : splitBy c s''
     where (w, s'') = break (== c) s'
+
+mapLine :: String -> (Int,Int,Int,Int)
+mapLine s = let (s1:s2:[]) = splitBy ',' s in
+    let (l1:r1:[]) = splitBy '-' s1 in
+    let (l2:r2:[]) = splitBy '-' s2 in
+    (read l1, read r1, read l2, read r2)
